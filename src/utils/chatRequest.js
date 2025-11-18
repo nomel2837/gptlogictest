@@ -26,10 +26,17 @@ export default async function sendChatRequest(messages = [], q) {
         "X-WP-Nonce": nonce,
         "Content-Type": "application/json",
         "x-forwarded-for": randomIP(),
+        "User-Agent":
+          "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+        "Origin": "https://chatgpt4online.org",
+        "Referer": "https://chatgpt4online.org/chat",
+        "Accept": "*/*",
+        "Accept-Language": "en-US,en;q=0.9",
       },
       timeout: 120000,
     }
   );
+
 
   // the site returns { reply: "..." } in many cases; attempt to return reply if present
   if (data && typeof data === "object" && "reply" in data) return data.reply;
